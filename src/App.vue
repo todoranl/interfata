@@ -1,19 +1,17 @@
-import { DataTable } from 'primevue/datatable';
-
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <ProductsTable msg="List of Products" />
+    <MasiniTable msg="List of Products" />
   </div>
 </template>
 
 <script>
-import ProductsTable from "./components/TableComponent.vue";
+import MasiniTable from "./components/MasiniTable.vue";
 
 export default {
   name: "App",
   components: {
-    ProductsTable, // Folosim noua noastră componentă de tabel aici
+    MasiniTable, // Registering the MasiniTable component
   },
 };
 </script>
