@@ -1,17 +1,21 @@
+import { DataTable } from 'primevue/datatable';
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <ProductsTable msg="List of Products" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProductsTable from "./components/TableComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    ProductsTable, // Folosim noua noastră componentă de tabel aici
+  },
+};
 </script>
 
 <style>
