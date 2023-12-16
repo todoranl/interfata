@@ -1,18 +1,20 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <MasiniTable msg="List of Products" />
+    <PersoaneTable msg="List of Products" />
   </div>
 </template>
 
 <script>
-import MasiniTable from "./components/MasiniTable.vue";
+import PersoaneTable from "./components/PersoaneTable.vue";
+//import MasiniTable from "./components/PersoaneTable.vue";
 
 export default {
   name: "App",
   components: {
-    MasiniTable, // Registering the MasiniTable component
-  },
+    //MasiniTable,
+    PersoaneTable
+},
 };
 </script>
 
