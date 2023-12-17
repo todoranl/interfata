@@ -1,7 +1,8 @@
 <template>
     <div>
       <!-- Button to open the add car form -->
-      <Button label="Adaugă Mașină" @click="showAddCarDialog = true" />
+      <Button label="Adaugă Mașină" @click="openAddCarDialog" />
+
       
       <!-- Dialog for the add car form -->
       <Dialog v-model:visible="showAddCarDialog" modal>
@@ -88,6 +89,17 @@
       .catch(error => {
         console.error("Error updating car:", error);
       });
+  },
+  openAddCarDialog() {
+    // Resetare newCar la valori implicite
+    this.newCar = {
+      marca: '',
+      model: '',
+      an: '',
+      motor: ''
+    };
+    // Deschide dialogul de adăugare a mașinii
+    this.showAddCarDialog = true;
   },
       fetchMasini() {
         axios.get('https://localhost:7084/masina')

@@ -1,7 +1,7 @@
 <template>
     <div>
       <!-- Button to open the add person form -->
-      <Button label="Adaugă Produs" @click="showAddProdusDialog = true" />
+      <Button label="Adaugă Produs" @click="openAddProdusDialog" />
   
       <!-- Dialog for the add person form -->
       <Dialog v-model:visible="showAddProdusDialog" modal>
@@ -95,7 +95,16 @@
           console.error("Error updating produs:", error);
         });
     },
-    
+    openAddProdusDialog() {
+    // Resetare newProdus la valori implicite
+    this.newProdus = {
+      denumire: '',
+      stoc: '',
+      pret: ''
+    };
+    // Deschide dialogul de adăugare a produsului
+    this.showAddProdusDialog = true;
+  },
     addProdus() {
   console.log("Adding produs:", this.newProdus);
   axios.post('https://localhost:7084/produs', this.newProdus, {

@@ -1,7 +1,8 @@
 <template>
     <div>
       <!-- Button to open the add person form -->
-      <Button label="Adaugă Persoană" @click="showAddPersoanaDialog = true" />
+      <Button label="Adaugă Persoană" @click="openAddPersoanaDialog" />
+
   
       <!-- Dialog for the add person form -->
       <Dialog v-model:visible="showAddPersoanaDialog" modal>
@@ -104,7 +105,17 @@ export default {
           console.error("Error adding person:", error);
         });
     },
-    
+    openAddPersoanaDialog() {
+    // Resetare newPersoana la valori implicite
+    this.newPersoana = {
+      nume: '',
+      prenume: '',
+      adresa: '',
+      email: ''
+    };
+    // Deschide dialogul de adăugare a persoanei
+    this.showAddPersoanaDialog = true;
+  },
     getActionsMenu(persoana) {
       return [
         {
