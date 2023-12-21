@@ -1,7 +1,8 @@
 <template>
     <div>
       <!-- Button to open the add car form -->
-      <Button label="Adaugă Mașină" @click="showAddCarDialog = true" />
+      <Button label="Adaugă Mașină" @click="openAddCarDialog" />
+
       
       <!-- Dialog for the add car form -->
       <Dialog v-model:visible="showAddCarDialog" modal>
@@ -30,19 +31,19 @@
   <Column field="model" header="Model"></Column>
   <Column field="an" header="An"></Column>
   <Column field="motor" header="Motor"></Column>
-  <Column header="Acțiuni">
-        <template #body="slotProps">
-          <Menu :model="getActionsMenu(slotProps.data)" popup ref="menu" />
-          <Button icon="pi pi-ellipsis-v" @click="($event) => $refs.menu.toggle($event)" class="p-button-text" />
-        </template>
-      </Column>
+  <Column header="Acțiuni" :key="car => car.id">
+    <template #body="slotProps">
+      <Button icon="pi pi-pencil" @click="openEditForm(slotProps.data)" class="p-button-text" />
+      <Button icon="pi pi-trash" @click="() => deleteMasina(slotProps.data.id)" class="p-button-text" />
+    </template>
+  </Column>
       </DataTable>
     </div>
   </template>
   
   <script>
 
-  import Menu from 'primevue/menu';
+  // import Menu from 'primevue/menu';
   import axios from 'axios';
   import DataTable from 'primevue/datatable';
   import Column from 'primevue/column';
@@ -53,7 +54,7 @@
   
   export default {
     components: {
-        Menu,
+        // Menu,
       DataTable,
       Column,
       Button,
@@ -88,6 +89,17 @@
       .catch(error => {
         console.error("Error updating car:", error);
       });
+  },
+  openAddCarDialog() {
+    // Resetare newCar la valori implicite
+    this.newCar = {
+      marca: '',
+      model: '',
+      an: '',
+      motor: ''
+    };
+    // Deschide dialogul de adăugare a mașinii
+    this.showAddCarDialog = true;
   },
       fetchMasini() {
         axios.get('https://localhost:7084/masina')
